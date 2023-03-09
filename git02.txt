@@ -139,23 +139,55 @@ repository 안에서 분기를 나눌 수 있다.
         자동으로 되어있을 수 있다.
 
 # Organizations
+- Organization 생성 및 설정
     Your Organizations > New Organizations > Creat a free Organization
     > Organization account name 설정 > Contact email 설정 > My personal account 체크 > accept 체크 > Next
     > Add organization members >  Owner 권한으로 준다.
 
     Create a new repository > Collaborators and teams > Manage access > Add people > Role을 지정한다.
 
-
-
-
 - clone
+    1. clone 받을 폴더를 생성한다.
 
-- fork
+    2. ?? init을 해야 하나 ??
 
-- merge
+    3. git clone 원격레파지토리주소
 
-- product
+- 로컬 레파지토리에서 새로운 브랜치 생성 후 원격 레파지토리로 push
+    1. git checkout -b feat/seoyeong
 
-- issue
+    2. 다른 수정 사항 작성한다.
 
-# 호스팅 (dothome, FTP, github)
+    3. git add .
+
+    4. git commit -m "feat: seoyeong을 추가하였습니다." -m "index.html에서 seoyeong 문구를 추가였습니다."
+
+    5. git push origin feat/seoyeong 
+
+- 원격 레파지토리 main 브랜치에 새로운 브랜치 merge
+    1. GitHub 새로운 브랜치에서 pull request
+        base 브랜치를 선택한다. > create pull request > 충돌 내용이 없으면 Merge pull request
+    
+    2. main 브랜치에서 변경된 내용을 확인한다.
+
+    3. 개발이 완료된 브랜치는 삭제한다.
+
+- 새로운 feat가 추가된 원격 레파지토리를 로컬 레파지토리 main 브랜치에서 merge
+    1. git checkout main
+
+    2. git pull origin main
+
+- 새로운 feat가 추가된 로컬 레파지토리 main 브랜치를 작업중인 브랜치에서 merge    
+    1. git checkout 작업중브랜치
+
+    2. git merge main
+
+    3. 만약 변경사항이 겹친다면 conflict 발생한다.
+        conflick를 해결한다.
+
+- 작업중인 브랜치 변경사항 원격 레파지토리에 push
+    1. + : 변경 내용 스테이징
+
+    2. 커밋 메세지 작성
+
+    3. 커밋
