@@ -1,0 +1,133 @@
+#Git
+- 소스 코드 버전 관리 시스템
+    v0.1(product)
+    v0.2(dev) --- 여러 기능
+         --- feature 1 --- 개발 완료
+         --- feature 2 --- 개발 완료
+         --- feature 3 --- 개발 중 --- 개발 불가 판단되면 feature 2로 되돌려야함.
+    프로젝트 개발의 history
+
+- 소스 코드 버전 관리를 넘어 협업 시스템
+    v0.2
+        --- feature 1 (성용)
+        --- feature 2 (동민)
+        --- feature 3 (진용)
+    3명이 동시에 작업을 한다.
+    병렬적 개발이 가능하다.
+
+- conflict(충돌상황)
+    저장공간과 각 기능을 합병(merge)할 때 충돌이 난 부분을 확인하여 충돌상황을 해결(resolve)후
+    merge 할 수 있도록 함.
+
+- 이슈 트레커
+    개발 간에 있었던 이슈(오류 해결, 오류 미해결)을 기록한다.
+
+- CI/CD를 위한 저장소
+    지속적인 통합, 지속적인 배포
+
+# Git 설치 및 환경 설정
+https://git-scm.com/downloads > 설치
+cmd > git --version으로 설치되어있는지 확인한다.
+Visual Code에서 터미널 > 새로운 터미널 > git --version
+오류 발생 시 > windows powershell 검색 > 관리자로 실행 > Set-ExecutionPolicy -Scope LocalMachine -ExecutionPolicy RemoteSigned -Force > Visual Code 재실행
+
+# GitHub
+Git을 웹호스팅 (UI가 있도록) 서비스
+세계 최대 개발자 커뮤니티
+https://github.com/ > 회원가입
+
+- 새로운 레파지토리 생성
+    Add a README file 체크 > Create repository
+
+- github 계정을 내 컴퓨터 자체에 연결한다.
+    자격 증명 관리자 > Windows 자격 증명 > 새로운 계정을 등록할 시 삭제한다.
+    git config --global user.name "username"
+    git config --global user.email "email"
+    git config --list
+
+# 앞으로 해야 할 일
+- 내가 버전 관리하고 싶은 프로젝트(폴더)를 찾습니다.
+
+- init
+    해당 폴더에 로컬 저장소(.git)를 생성한다.
+    터미널에서 내가 올리고 싶은 폴더로 경로를 맞추고 나서 init을 한다.
+    init을 잘못했을 시 해당 폴더에 있는 .git 폴더를 삭제한다.
+    빈 폴더를 올리고 싶을 땐 폴더를 생성하고 그 안에 .gitkeep 파일을 생성한다.
+
+    1. cd 상대경로/하위폴더
+        상대경로 또는 하위 폴더로 이동한다.
+
+    2. cd ..
+        상위 폴더로 이동한다.
+
+    3. cd 절대경로
+        절대경로로 이동한다.        
+
+- remote
+    이 로컬 저장소와 내가 생성한 repository(원격 저장소)의 주소를 연동한다.
+    
+    1. git remote
+        현재 해당 로컬 저장소와 연결된 원격 저장소의 목록
+
+    2. git remote add 원격저장소명 원격저장소주소
+        로컬 저장소와 원격 저장소를 연결한다.
+        원격저장소명은 origin을 많이 사용한다.
+        원격저장소주소는 GitHub에서 복붙한다.
+
+    3. git remote remove 원격저장소명
+        로컬 저장소와 원격 저장소의 연결을 삭제한다.
+
+- add
+    내가 로컬 저장소에 올리고 싶은 파일을 스테이징 한다.
+
+    1. git add .
+        모든 파일을 스테이징 한다. (.gitignore에 올라가는 파일은 스테이징 하지 않는다.)
+
+    2. git add 파일명
+        내가 올리고 싶은 파일만 스테이징 한다.
+
+- commit
+    로컬 저장소에 내가 올리고 싶은 파일을 올린다.
+    commit을 하게 되면 일종의 해쉬(암호화 된) 코드를 받게 된다.
+    향후 이 코드를 사용하여 cherry pick 하거나 revert 할 수 있다.
+
+    1. git commit -m "title" -m "body" -m "footer"
+        commit 메세지를 작성한다.
+        예) git commit -m "feat: login api" -m "로그인 api를 추가하였습니다." 
+
+    2. git commit --amend
+        기존에 있던 commit 내용과 현재 commit 내용을 합친다.
+        revert 하는 것보다 내용을 합치는 것을 추천한다.
+        
+- cherry-pick
+    1. git cherry-pick 해쉬커밋번호
+        특정 커밋만 선택하여 적용한다.
+            
+- revert
+    1. git revert 해쉬커밋번호
+        특정 커밋을 되돌린다.
+        커밋 내용이 꼬이므로 사용하지 않는 것을 추천한다.
+        revert를 할거면 GUI 환경에서 하는 것을 추천한다.
+
+- log
+    1. git log
+        현재 git의 history와 git 해쉬커밋번호를 확인한다.        
+
+- pull
+    원격 저장소로부터 현재 올리려는 로컬 저장소를 최신화 한다.
+    원격 저장소의 브랜치를 GitHub에서 확인한다. (main)
+    Git은 바뀐 부분만 pull 한다.
+
+    1. git pull 원격저장소명 브랜치명
+        원격 저장소의 커밋 내용과 현재 내 로컬 환경을 동기화한다.
+
+- push
+    원격 저장소로 전송한다.
+    Git은 바뀐 부분만 push 한다.
+    로컬 브랜치를 main 브랜치로 변경한다. git branch > git branch main > git checkout main
+    또는 git checkout -b main
+    원격 레파지토리에 README.md 파일을 생성했다면 > git pull origin main --rebase
+    또는 git push origin main -f
+
+    1. git push 원격저장소명 브랜치명
+        로컬 저장소의 커밋 내용을 원격 저장소에 전송한다.
